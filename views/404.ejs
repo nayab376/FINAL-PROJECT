@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Not Found</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main class="not-found">
+    <h1>404</h1>
+    <p>Page not found: <%= url %></p>
+    <a href="/" class="btn btn-secondary">Return home</a>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>

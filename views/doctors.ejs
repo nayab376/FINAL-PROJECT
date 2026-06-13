@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Doctors - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="search-card">
+      <div class="card-header">
+        <div>
+          <h2 class="page-title">Find Doctors</h2>
+          <p class="page-subtitle">Search by name, specialty, or treatment style. Explore doctor profiles with clinic hours and availability.</p>
+        </div>
+        <span class="badge"><%= doctors.length %> results</span>
+      </div>
+      <form method="get" action="/doctors">
+        <label>Search by name or specialty</label>
+        <input type="text" name="query" placeholder="Doctor name or disease" value="<%= filters.query || '' %>" />
+        <label>Specialty</label>
+        <input type="text" name="specialty" placeholder="e.g. General Physician" value="<%= filters.specialty || '' %>" />
+        <label>Treatment type</label>
+        <select name="treatment_type">
+          <option value="">All</option>
+          <option value="Allopathic" <%= filters.treatment_type === 'Allopathic' ? 'selected' : '' %>>Allopathic</option>
+          <option value="Homeopathic" <%= filters.treatment_type === 'Homeopathic' ? 'selected' : '' %>>Homeopathic</option>
+          <option value="Herbal" <%= filters.treatment_type === 'Herbal' ? 'selected' : '' %>>Herbal</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="doctor-list">
+      <% if (doctors.length === 0) { %>
+        <p>No doctors found. Try changing the search criteria.</p>
+      <% } %>
+      <% doctors.forEach(doctor => { %>
+        <article class="doctor-card">
+          <div style="display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start;">
+            <h3><a href="/doctor/<%= doctor.id %>"><%= doctor.doctor_name %></a></h3>
+            <span class="status-badge <%= doctor.availability.toLowerCase().includes('available') ? 'available' : 'busy' %>">
+              <%= doctor.availability.toLowerCase().includes('available') ? 'Available' : 'Check schedule' %>
+            </span>
+          </div>
+          <p><strong>Specialty:</strong> <%= doctor.specialty %></p>
+          <p><strong>Treatment:</strong> <%= doctor.treatment_type %></p>
+          <p><strong>Clinic:</strong> <%= doctor.clinic_name || 'N/A' %></p>
+          <p><strong>Location:</strong> <%= doctor.clinic_address || 'N/A' %></p>
+          <p><strong>Schedule:</strong> <%= doctor.availability %></p>
+          <p><%= doctor.details %></p>
+          <div class="actions" style="margin-top: 1rem;">
+            <a href="/doctor/<%= doctor.id %>" class="btn">View profile</a>
+          </div>
+        </article>
+      <% }); %>
+    </section>
+    <footer class="footer">Browse specialists, compare availability, and book care from one polished medical portal.</footer>
+  </main>
+</body>
+</html>

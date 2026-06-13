@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="list-card">
+      <div class="card-header">
+        <div>
+          <h2 class="page-title">Appointments</h2>
+          <p class="page-subtitle">Track and manage your booking workflow. Assistants can verify payments from this page.</p>
+        </div>
+      </div>
+      <% if (appointments.length === 0) { %>
+        <p>No appointments available.</p>
+      <% } else { %>
+        <div class="table-responsive">
+          <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <% if (user.role !== 'patient') { %><th>Patient</th><% } %>
+              <% if (user.role !== 'doctor') { %><th>Doctor</th><% } %>
+              <th>Clinic</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Payment</th>
+              <% if (user.role === 'assistant') { %><th>Action</th><% } %>
+            </tr>
+          </thead>
+          <tbody>
+            <% appointments.forEach(appointment => { %>
+              <tr>
+                <td><%= appointment.id %></td>
+                <% if (user.role !== 'patient') { %><td><%= appointment.patient_name %></td><% } %>
+                <% if (user.role !== 'doctor') { %><td><%= appointment.doctor_name %></td><% } %>
+                <td><%= appointment.clinic_name || 'N/A' %></td>
+                <td><%= appointment.date %></td>
+                <td><%= appointment.time %></td>
+                <td><%= appointment.status %></td>
+                <td><%= appointment.payment_verified ? 'Verified' : 'Pending' %></td>
+                <% if (user.role === 'assistant') { %>
+                  <td>
+                    <% if (!appointment.payment_verified) { %>
+                      <form action="/payments/verify" method="post" style="margin:0;">
+                        <input type="hidden" name="appointment_id" value="<%= appointment.id %>" />
+                        <button type="submit">Verify</button>
+                      </form>
+                    <% } else { %>
+                      Verified
+                    <% } %>
+                  </td>
+                <% } %>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
+    </section>
+    <footer class="footer">Appointment status and payment verification live in one clear, secure workflow.</footer>
+  </main>
+</body>
+</html>

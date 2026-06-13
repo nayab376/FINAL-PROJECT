@@ -1,0 +1,18 @@
+<header>
+  <h1>Doctor Hub</h1>
+  <nav>
+    <% const currentActive = typeof active !== 'undefined' ? active : ''; %>
+    <% if (typeof user !== 'undefined' && user) { %>
+      <a href="/" class="<%= currentActive === 'home' ? 'active' : '' %>">Home</a>
+      <a href="/dashboard" class="<%= currentActive === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+      <a href="/doctors" class="<%= currentActive === 'doctors' ? 'active' : '' %>">Find Doctors</a>
+      <a href="/appointments" class="<%= currentActive === 'appointments' ? 'active' : '' %>">Appointments</a>
+      <a href="/history" class="<%= currentActive === 'history' ? 'active' : '' %>">Medical History</a>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/" class="<%= currentActive === 'home' ? 'active' : '' %>">Home</a>
+      <a href="/login" class="<%= currentActive === 'login' ? 'active' : '' %>">Login</a>
+      <a href="/register" class="<%= currentActive === 'register' ? 'active' : '' %>">Register</a>
+    <% } %>
+  </nav>
+</header>

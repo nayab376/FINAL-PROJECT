@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="welcome-card">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Welcome, <%= user.name %>!</h2>
+          <p class="page-subtitle">Your role is <strong><%= user.role %></strong>. Use the dashboard to explore doctors, appointments, and medical history.</p>
+        </div>
+      </div>
+    </section>
+    <section class="stats-grid">
+      <article>
+        <h3>Total Doctors</h3>
+        <p><%= doctorCount %></p>
+      </article>
+      <article>
+        <h3>Total Appointments</h3>
+        <p><%= appointmentCount %></p>
+      </article>
+    </section>
+    <section class="actions-grid">
+      <a href="/doctors" class="btn">Find Doctors</a>
+      <a href="/appointments" class="btn">View Appointments</a>
+      <a href="/history" class="btn btn-secondary">Medical History</a>
+    </section>
+    <footer class="footer">Quick access to appointments, doctor search, and clinical summaries makes Doctor Hub ideal for busy professionals.</footer>
+  </main>
+</body>
+</html>

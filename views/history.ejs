@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical History - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="list-card">
+      <div class="card-header">
+        <div>
+          <h2 class="page-title">Medical History</h2>
+          <p class="page-subtitle">View secure patient and treatment records, organized clearly for physicians and staff.</p>
+        </div>
+      </div>
+      <% if (history.length === 0) { %>
+        <p>No medical history records found.</p>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Doctor</th>
+              <th>Patient</th>
+              <th>Record</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% history.forEach(record => { %>
+              <tr>
+                <td><%= record.id %></td>
+                <td><%= record.doctor_name %></td>
+                <td><%= record.patient_name %></td>
+                <td><%= record.record_text %></td>
+                <td><%= record.created_at %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } %>
+    </section>
+    <%- include('partials/footer') %>
+  </main>
+</body>
+</html>

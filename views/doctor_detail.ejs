@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= doctor.doctor_name %> - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="doctor-detail-card">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title"><%= doctor.doctor_name %></h2>
+          <p class="page-subtitle">Expert care with clear availability, clinic details, and easy appointment booking.</p>
+        </div>
+        <span class="status-badge <%= doctor.availability.toLowerCase().includes('available') ? 'available' : 'busy' %>">
+          <%= doctor.availability.toLowerCase().includes('available') ? 'Available now' : 'Schedule review' %>
+        </span>
+      </div>
+      <div class="detail-row">
+        <div>
+          <p><strong>Specialty:</strong> <%= doctor.specialty %></p>
+          <p><strong>Treatment Type:</strong> <%= doctor.treatment_type %></p>
+          <p><strong>Clinic:</strong> <%= doctor.clinic_name || 'N/A' %></p>
+        </div>
+        <div>
+          <p><strong>Address:</strong> <%= doctor.clinic_address || 'N/A' %></p>
+          <p><strong>Clinic Hours:</strong> <%= doctor.open_hours || 'N/A' %></p>
+          <p><strong>Schedule:</strong> <%= doctor.availability %></p>
+        </div>
+      </div>
+      <div style="margin-top: 1rem;">
+        <p><strong>About this doctor</strong></p>
+        <p><%= doctor.details %></p>
+      </div>
+      <% if (user.role === 'patient') { %>
+        <form action="/appointments/book" method="post">
+          <h3>Book Appointment</h3>
+          <input type="hidden" name="doctor_id" value="<%= doctor.id %>" />
+          <div class="detail-row">
+            <div>
+              <label>Date</label>
+              <input type="date" name="date" required />
+            </div>
+            <div>
+              <label>Time</label>
+              <input type="time" name="time" required />
+            </div>
+          </div>
+          <label>Payment screenshot URL</label>
+          <input type="text" name="payment_screenshot" placeholder="Paste payment screenshot link" />
+          <button type="submit">Book Appointment</button>
+        </form>
+      <% } %>
+    </section>
+    <%- include('partials/footer') %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Super Admin",
+      "email": "admin@doctorhub.com",
+      "password": "$2a$10$xQ55/GVwEB3mQFgRMkTC4.2Fnn7s9QSQ9jtOKFgdsesxLvNgPCOii",
+      "role": "superadmin"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Ayesha Khan",
+      "email": "doctor@doctorhub.com",
+      "password": "$2a$10$RxO21REZ1jhl4puGWsDmeOdu9aYCc0/.VuCSajwZ9YMvQEe/8x6Kq",
+      "role": "doctor"
+    },
+    {
+      "id": 3,
+      "name": "Patient Ali",
+      "email": "patient@doctorhub.com",
+      "password": "$2a$10$.ZiX4/iYR4XyoOCatdky4.pl9mVuz7FRrn9cMaUvTyDZ73wSf6XxO",
+      "role": "patient"
+    },
+    {
+      "id": 4,
+      "name": "Assistant Sara",
+      "email": "assistant@doctorhub.com",
+      "password": "$2a$10$q4apz6LPhY8IPy4Wqe.VXOJtbwo69mhB7HeJ.xZhE8EBZK3B9cmja",
+      "role": "assistant"
+    },
+    {
+      "id": 5,
+      "name": "nayab",
+      "email": "nayabzaman024@gmail.com",
+      "password": "$2a$10$.XFmrtbbKNcTSxrAvKj.LuvOSgKyLVvJmIV2fNJlN9C4jE7fFI1hu",
+      "role": "patient"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "user_id": 3,
+      "date_of_birth": "1990-08-15"
+    },
+    {
+      "id": 2,
+      "user_id": 5,
+      "date_of_birth": ""
+    }
+  ],
+  "assistants": [
+    {
+      "id": 1,
+      "user_id": 4
+    }
+  ],
+  "clinics": [
+    {
+      "id": 1,
+      "name": "City Care Clinic",
+      "address": "123 Main Street",
+      "open_hours": "09:00 - 17:00"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "specialty": "General Physician",
+      "treatment_type": "Allopathic",
+      "details": "Experienced in family medicine and acute care.",
+      "availability": "Mon-Fri 10:00-16:00",
+      "clinic_id": 1
+    }
+  ],
+  "appointments": [],
+  "payments": [],
+  "prescriptions": [],
+  "medical_history": []
+}

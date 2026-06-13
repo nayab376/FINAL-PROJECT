@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="form-card">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Welcome back</h2>
+          <p class="page-subtitle">Sign in to access your dashboard, manage appointments, and connect with doctors.</p>
+        </div>
+      </div>
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+      <form action="/login" method="post">
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <label>Password</label>
+        <input type="password" name="password" required />
+        <label>Login as</label>
+        <select name="role" required>
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+          <option value="assistant">Assistant</option>
+        </select>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+    <%- include('partials/footer') %>
+  </main>
+</body>
+</html>

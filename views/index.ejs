@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <section class="hero">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Healthcare consultation and patient history management</h2>
+          <p class="page-subtitle">Search doctors, book appointments, upload payment proof, and manage secure patient records with a modern healthcare dashboard.</p>
+        </div>
+      </div>
+      <% if (!user) { %>
+        <div class="actions">
+          <a href="/login" class="btn">Login</a>
+          <a href="/register" class="btn btn-secondary">Register</a>
+        </div>
+      <% } %>
+    </section>
+
+    <section class="summary-cards">
+      <article>
+        <h3>Search doctors</h3>
+        <p>Find doctors by name, specialty, treatment type, and availability.</p>
+      </article>
+      <article>
+        <h3>Appointment workflow</h3>
+        <p>Book appointments, upload payment proof, and confirm through assistants.</p>
+      </article>
+      <article>
+        <h3>Secure history</h3>
+        <p>Medical history is protected and cannot be deleted or changed by patients.</p>
+      </article>
+    </section>
+    <footer class="footer">Built for modern healthcare teams. Doctor Hub centralizes consultations, appointments, and patient records.</footer>
+  </main>
+</body>
+</html>
